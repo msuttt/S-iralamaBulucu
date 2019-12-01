@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "CreateToWord";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using WebApplication4.Models;
+@using WebApplication4.Models.Entities;
+@model Word
+    @{ 
+        var productList = (List<Product>)ViewBag.AllProducts;
+        var productSelectList = new SelectList(productList, "Id", "ProductName");
+    }
+<div class="row">
+    <div class="col-12" style="margin-top:150px">
+        <div class="card">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <form action="@Url.Action("CreateToWord","Home")" method="post">
+                        <table>
+                            <tr>
+                                <td>Ürün seç:</td>
+                                <td>@Html.DropDownListFor(m => m.ProductId, productSelectList)</td>
+                            </tr>
+                            <tr>
+                                <td>Kelime Girin:</td>
+                                <td>@Html.TextBoxFor(m => m.TheWord)</td>
+                            </tr>
+                            <tr>
+                                <td>@TempData["kelimeSınırı"]</td>
+                                <td> <input type="submit" name="name" value="Ekle" /></td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+        </div>
+        @Html.ActionLink("<<Geri", "Index")
+    </div>
+
+    
+</div>
